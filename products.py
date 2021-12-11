@@ -15,3 +15,6 @@ while True:
 print(products)
 
 #現在我們想要連商品價格也一起輸入，所以回過頭設一個小清單
+
+for p in products:
+	print(p[0], "的價格是", p[1])
