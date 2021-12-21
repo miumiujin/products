@@ -1,6 +1,18 @@
+# 讀取檔案
+products =  []
+with open("products.csv", "r", encoding = "utf-8") as f :
+	for line in f:
+		if "商品,價格" in line:
+			continue #繼續
+		name,price = line.strip().split(",") # 由左而右執行，先把換行符號去掉(strip)，再切割(split)，以逗點為依據
+		products.append([name,price])
+		
+		#可以直接把 name跟price 寫在第五行的左邊
+		# name,price = line.strip().split(",") 切割完之後直接存進去，省下6,7行
+print(products)
 # while 迴圈適合我們不知道要執行多少次的時候
 # for 迴圈則是確認次數的時候 搭配 for i in range() 使用
-products = []
+#讓使用者輸入
 while True:
 	name = input("請輸入商品名稱 : ")
 	if name == "q":
@@ -10,13 +22,13 @@ while True:
 	p = []  #小清單(小火車)
 	p.append(name)
 	p.append(price)
-	# 但也可以將 10~12行 簡化成 p = [name , price]
+	# 但也可以將上面三行 簡化成 p = [name , price]
 	products.append(p) # 將小清單放入大清單
 	# 更簡潔的方法 : products.append([name , price])，連 p 這個小清單都不用設了
 print(products)
 
 #現在我們想要連商品價格也一起輸入，所以回過頭設一個小清單
-
+#印出所有購買紀錄
 for p in products:
 	print(p[0], "的價格是", p[1])
 
