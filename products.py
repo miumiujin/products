@@ -1,15 +1,18 @@
+import os # 作業系統
 # 讀取檔案
-products =  []
-with open("products.csv", "r", encoding = "utf-8") as f :
-	for line in f:
-		if "商品,價格" in line:
-			continue #繼續
-		name,price = line.strip().split(",") # 由左而右執行，先把換行符號去掉(strip)，再切割(split)，以逗點為依據
-		products.append([name,price])
-		
-		#可以直接把 name跟price 寫在第五行的左邊
-		# name,price = line.strip().split(",") 切割完之後直接存進去，省下6,7行
-print(products)
+products =  [] # 之所以將 products 放到這麼前面是因為不論檔案是否存在我們都需要這個空清單
+if os.path.isfile("products.csv"):
+	print("找到檔案惹~~~")
+	with open("products.csv", "r", encoding = "utf-8") as f :
+		for line in f:
+			if "商品,價格" in line:
+				continue #繼續
+			name,price = line.strip().split(",") # 由左而右執行，先把換行符號去掉(strip)，再切割(split)，以逗點為依據
+			products.append([name,price])
+			#可以直接把 name跟price 寫在第五行的左邊
+	print(products)
+else:
+	print("找不到檔案")
 # while 迴圈適合我們不知道要執行多少次的時候
 # for 迴圈則是確認次數的時候 搭配 for i in range() 使用
 #讓使用者輸入
